@@ -1,0 +1,145 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil
+{% endblock %}
+{% block stylesheets %}{% endblock %}
+
+
+{% block body %}
+	<style>
+		body {
+			background-color: aliceblue;
+		}
+
+		h1 {
+			text-align: center;
+			padding-top: 90px;
+			margin-bottom: 20px;
+			height: 250px;
+			width: 100%;
+			color: white;
+			font-size: 50px;
+			background: center url('http://village.dylanweisse.com/mairie.jpg');
+		}
+
+		h2 {
+			margin-bottom: 30px;
+		}
+
+		h2.meteo-title {
+			font-size: 35px;
+			text-align: center;
+			padding-top: 30px;
+			margin-bottom: 30px;
+		}
+		iframe {
+			margin-left: auto;
+			margin-right: auto;
+			display: block;
+			margin-bottom: 30px;
+		}
+
+		a.show-all {
+			margin-left: auto;
+			margin-right: auto;
+			display: block;
+			margin-bottom: 30px;
+			width: 20%;
+		}
+		.container {
+			color: aliceblue;
+		}
+	</style>
+
+	<h1>Bienvenue à Belleville</h1>
+	<div class="container">
+		<h2>Dernieres Actus</h2>
+		<div class="container d-flex flex-row">
+			<article class="col-sm-6">
+				<div class="card bg-light mb-3">
+					<img class="card-img-top" src="{{actu.image}}" alt="">
+					<div class="card-body">
+						<h5 class="card-title">{{ actu.title }}</h5>
+						<p class="card-text">{{actu.content | raw }}</p>
+						<a href="{{ path('actuShow', {'id': actu.id}) }}" class="btn btn-primary">Lire la suite</a>
+						<hr>
+						<p class="card-text">
+							<small class="text-muted">Ecris le
+								{{ actu.createdAt | date('d/m/Y') }}
+								à
+								{{ actu.createdAt | date('H:i') }}
+							</small>
+						</p>
+					</div>
+				</div>
+			</article>
+			<article class="col-sm-6">
+				<div class="card bg-light mb-3">
+					<img class="card-img-top" src="{{actu2.image}}" alt="">
+					<div class="card-body">
+						<h5 class="card-title">{{ actu2.title }}</h5>
+						<p class="card-text">{{actu2.content | raw }}</p>
+						<a href="{{ path('actuShow', {'id': actu2.id}) }}" class="btn btn-primary">Lire la suite</a>
+						<hr>
+						<p class="card-text">
+							<small class="text-muted">Ecris le
+								{{ actu2.createdAt | date('d/m/Y') }}
+								à
+								{{ actu2.createdAt | date('H:i') }}
+							</small>
+						</p>
+					</div>
+				</div>
+			</article>
+		</div>
+
+		<a href="{{ path('actu') }}" class="btn btn-primary show-all">Voir toutes les actus</a>
+
+		<h2>Derniers Evenements</h2>
+		<div class="container d-flex flex-row">
+			<article class="col-sm-6">
+				<div class="card bg-light mb-3">
+					<img class="card-img-top" src="{{event.image}}" alt="">
+					<div class="card-body">
+						<h5 class="card-title">{{ event.title }}</h5>
+						<p class="card-text">{{event.content | raw }}</p>
+						<a href="{{ path('eventShow', {'id': event.id}) }}" class="btn btn-primary">Lire la suite</a>
+						<hr>
+						<p class="card-text">
+							<small class="text-muted">Ecris le
+								{{ event.createdAt | date('d/m/Y') }}
+								à
+								{{ event.createdAt | date('H:i') }}
+							</small>
+						</p>
+					</div>
+				</div>
+			</article>
+			<article class="col-sm-6">
+				<div class="card bg-light mb-3">
+					<img class="card-img-top" src="{{event2.image}}" alt="">
+					<div class="card-body">
+						<h5 class="card-title">{{ event2.title }}</h5>
+						<p class="card-text">{{event2.content | raw }}</p>
+						<a href="{{ path('eventShow', {'id': event2.id}) }}" class="btn btn-primary">Lire la suite</a>
+						<hr>
+						<p class="card-text">
+							<small class="text-muted">Ecris le
+								{{ event2.createdAt | date('d/m/Y') }}
+								à
+								{{ event2.createdAt | date('H:i') }}
+							</small>
+						</p>
+					</div>
+				</div>
+			</article>
+		</div>
+
+		<a href="{{ path('event') }}" class="btn btn-primary show-all">Voir tous les evenements</a>
+
+		<h2 class="meteo-title">Météo de votre ville</h2>
+
+		<iframe id="widget_autocomplete_preview" frameborder="0" src="https://meteofrance.com/widget/prevision/540600"></iframe>
+
+	</div>
+{% endblock %}

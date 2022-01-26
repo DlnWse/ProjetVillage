@@ -1,0 +1,43 @@
+{% extends "base.html.twig" %}
+
+
+{% block body %}
+<style>
+    article {
+        margin-top: 0px;
+    }
+
+    h2 {
+        background: url({{actu.image}});
+        height: 250px;
+        width: 1920px;
+        margin-left: 0;
+        margin-right: 0;
+        padding-left: 0;
+        padding-top: 100px;
+        text-align: center;
+        font-size: 50px;
+
+    }
+
+    .card-body {
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+</style>
+
+<article>
+
+    <div class="card-body">
+        <h2 class="card-title">{{actu.title}}</h2>
+        <div class="container">
+            <p class="card-text">{{actu.content | raw }}</p>
+            <hr>
+            <p class="card-text"><small class="text-muted">Ecris le {{ actu.createdAt | date('d/m/Y') }} à
+                    {{ actu.createdAt | date('H:i') }} </small></p>
+        </div>
+    </div>
+
+</article>
+
+{% endblock %}

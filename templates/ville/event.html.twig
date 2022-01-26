@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Page event{% endblock %}
+
+{% block body %}
+
+<h1>Les Evénements de votre ville ! ✅</h1>
+<div class="container">
+    {% for event in event %}
+
+    <article>
+        <div class="card border-primary mb-3">
+            <img class="card-img-top" src="{{event.image}}" alt="">
+            <div class="card-body">
+                <h5 class="card-title">{{ event.title }}</h5>
+                <p class="card-text">{{event.content | raw }}</p>
+                <a href="{{ path('eventShow', {'id': event.id}) }}" class="btn btn-primary">Lire la suite</a>
+                <hr>
+                <p class="card-text"><small class="text-muted">Ecris le {{ event.createdAt | date('d/m/Y') }} à
+                        {{ event.createdAt | date('H:i') }} </small></p>
+            </div>
+        </div>
+    </article>
+
+    {% endfor %}
+</div>
+{% endblock %}
