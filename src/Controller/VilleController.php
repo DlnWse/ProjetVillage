@@ -3,12 +3,16 @@
 namespace App\Controller;
 
 use App\Entity\Actu;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Event;
 use App\Repository\EventRepository;
 use App\Repository\ActuRepository;
+use App\Form\EventType; 
+use App\Form\ActuType;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\Request;
+use Doctrine\ORM\EntityManagerInterface;
 
 class VilleController extends AbstractController
 {
@@ -78,20 +82,69 @@ class VilleController extends AbstractController
         return $this->render('ville/connect.html.twig', []);
     }
 
-        /**
+    /**
      * @Route("/event/new", name="createEvent")
+     * @Route("/event/{id}/edit", name="editEvent")
      */
-    public function createEvent(): Response
+    public function formEvent(Event $event = null, Request $request, EntityManagerInterface $manager): Response
+
     {
-        return $this->render('ville/createEvent.html.twig', []);
+        if (!$event) {
+            $event = new Event();
+        }
+
+        $form = $this -> createForm(EventType::class, $event);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            if (!$event->getId()) {
+                $event->setCreatedAt(new \DateTime());
+            }
+
+            $manager->persist($event);
+            $manager->flush();
+
+            return $this->redirectToRoute('eventShow', ['id' => $event->getId()]);
+        }
+
+        return $this->render('ville/createEvent.html.twig', [
+            'formEvent' => $form->createView(),
+            'editMode' => $event->getId() !== null
+
+        ]);
     }
 
-        /**
+    /**
      * @Route("/actu/new", name="createActu")
+     * @Route("/actu/{id}/edit", name="editActu")
      */
-    public function createActu(): Response
+    public function formActu(Actu $actu = null, Request $request, EntityManagerInterface $manager): Response
     {
-        return $this->render('ville/createActu.html.twig', []);
+        if (!$actu) {
+            $actu = new Actu();
+        }
+
+        $form = $this -> createForm(ActuType::class, $actu);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            if (!$actu->getId()) {
+                $actu->setCreatedAt(new \DateTime());
+            }
+
+            $manager->persist($actu);
+            $manager->flush();
+
+            return $this->redirectToRoute('actuShow', ['id' => $actu->getId()]);
+        }
+
+        return $this->render('ville/createActu.html.twig', [
+            'formActu' => $form->createView(),
+            'editMode' => $actu->getId() !== null
+
+        ]);
     }
 
     /**

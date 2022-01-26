@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+{% form_theme formActu 'bootstrap_4_layout.html.twig' %}
+{% block body %}
+<style>
+    h1 {
+        text-align: center;
+        margin-top: 30px;
+    }
+</style>
+<h1> {% if editMode %}
+    Modification d'une actu
+    {% else %}
+    Création d'une actu
+    {% endif %}</h1>
+
+{{ form_start(formActu) }}
+<div class="container">
+
+    {{ form_row(formActu.title, {'attr': {'placeholder' : "Titre de l'actu"}}) }}
+
+    {{ form_row(formActu.content , {'attr': {'placeholder' : "Contenu de l'actu"}}) }}
+
+    {{ form_row(formActu.image , {'attr': {'placeholder' : "URL de l'image"}}) }}
+
+
+    <button type="submit" class="btn btn-primary">
+
+        {% if editMode %}
+        Enregistrer les modifs.
+        {% else %}
+        Ajouter l'actu
+        {% endif %}
+    </button>
+
+    {{ form_end(formActu) }}
+
+    {% endblock %}

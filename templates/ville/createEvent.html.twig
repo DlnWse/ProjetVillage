@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+{% form_theme formEvent 'bootstrap_4_layout.html.twig' %}
+{% block body %}
+<style>
+    h1 {
+        text-align: center;
+        margin-top: 30px;
+    }
+</style>
+<h1> {% if editMode %}
+    Modification d'un event
+    {% else %}
+    Création d'un event
+    {% endif %}</h1>
+
+{{ form_start(formEvent) }}
+<div class="container">
+
+    {{ form_row(formEvent.title, {'attr': {'placeholder' : "Titre de l'event"}}) }}
+
+    {{ form_row(formEvent.content , {'attr': {'placeholder' : "Contenu de l'event"}}) }}
+
+    {{ form_row(formEvent.image , {'attr': {'placeholder' : "URL de l'image"}}) }}
+
+
+    <button type="submit" class="btn btn-primary">
+
+        {% if editMode %}
+        Enregistrer les modifs.
+        {% else %}
+        Ajouter l'event
+        {% endif %}
+    </button>
+
+    {{ form_end(formEvent) }}
+
+    {% endblock %}
