@@ -5,7 +5,13 @@
     <h1>Inscription</h1>
 
     {{ form_start(form) }}
-    {{ form_widget(form) }}
+    {{ form_row(form.username, 'label' : 'Nom D\'utilisateur' { 
+        'attr' :{
+            'placeholder' : 'Pseudo :'}}) }}
+    {{ form_row(form.email) }}
+    {{ form_row(form.password) }}
+    {{ form_row(form.confirm_password) }}
+
 
     <button type="submit" class="btn btn-primary">S'inscrire</button>
 
