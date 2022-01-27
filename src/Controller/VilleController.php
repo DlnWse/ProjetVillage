@@ -32,10 +32,10 @@ class VilleController extends AbstractController
      */
     public function home(ActuRepository $repoActu, EventRepository $repoEvent): Response
     {
-        $actu = $repoActu->findOneBy(['id' => '9']);
-        $actu2 = $repoActu->findOneBy(['id' => '10']);
-        $event = $repoEvent->findOneBy(['id' => '9']);
-        $event2 = $repoEvent->findOneBy(['id' => '10']);
+        $actu = $repoActu->findOneBy(['id' => '1']);
+        $actu2 = $repoActu->findOneBy(['id' => '2']);
+        $event = $repoEvent->findOneBy(['id' => '1']);
+        $event2 = $repoEvent->findOneBy(['id' => '2']);
         return $this->render('ville/home.html.twig', [
             'actu' => $actu,
             'actu2' => $actu2,
@@ -74,12 +74,31 @@ class VilleController extends AbstractController
         return $this->render('ville/contact.html.twig', []);
     }
 
-    /**
-     * @Route("/connect", name="connect")
+
+     /**
+     * @Route("/event/{id}/delete", name="deleteEvent")
      */
-    public function connect(): Response
+    public function deleteEvent(int $id): Response
     {
-        return $this->render('ville/connect.html.twig', []);
+        $entityManager = $this->getDoctrine()->getManager();
+        $event = $entityManager->getRepository(Event::class)->find($id);
+        $entityManager->remove($event);
+        $entityManager->flush();
+    
+        return $this->redirectToRoute("event");
+    }
+
+ /**
+     * @Route("/event/{id}/delete", name="deleteActu")
+     */
+    public function deleteActu(int $id): Response
+    {
+        $entityManager = $this->getDoctrine()->getManager();
+        $actu = $entityManager->getRepository(Actu::class)->find($id);
+        $entityManager->remove($actu);
+        $entityManager->flush();
+    
+        return $this->redirectToRoute("actu");
     }
 
     /**

@@ -17,7 +17,7 @@ class EventFixtures extends Fixture
             $event = new Event();
             $event->setTitle("Titre de l'event n°$i")
                   ->setContent("<p>Contenu de l'event n°$i</p>")
-                  ->setImage("https://picsum.photos/1123/180?random=$i")
+                  ->setImage("https://picsum.photos/1920/250?random=$i")
                   ->setCreatedAt(new DateTime());
 
                   $manager->persist($event);

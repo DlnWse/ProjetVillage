@@ -21,8 +21,8 @@ class Actu
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\Length(
-     * min=5,
-     * max=255,
+     * min="5",
+     * max="255",
      * minMessage = "Votre titre est trop court il doit dépassé 5 charactères !",
      * maxMessage = "Votre titre est trop long il ne doit pas dépassé 255 charactères !" )
      */
@@ -31,7 +31,7 @@ class Actu
     /**
      * @ORM\Column(type="text")
      * @Assert\Length(
-     * min=30,
+     * min="30",
      * minMessage = "Votre contenu est trop court il doit dépassé 30 charactères !"
      * )
      */

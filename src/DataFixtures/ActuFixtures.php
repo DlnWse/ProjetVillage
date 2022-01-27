@@ -16,7 +16,7 @@ class ActuFixtures extends Fixture
             $actu = new Actu();
             $actu->setTitle("Titre de l'actu n°$i")
                   ->setContent("<p>Contenu de l'actu n°$i</p>")
-                  ->setImage("https://picsum.photos/1123/180?random=$i")
+                  ->setImage("https://picsum.photos/1920/250?random=$i")
                   ->setCreatedAt(new DateTime());
 
                   $manager->persist($actu);

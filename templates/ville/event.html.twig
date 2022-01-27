@@ -3,8 +3,17 @@
 {% block title %}Page event{% endblock %}
 
 {% block body %}
+<style>
+    h1 {
+        text-align: center;
+        margin-top: 30px;
+    }
+    body {
+        background-color: rgba(186, 197, 228, 0.349);
+    }
+</style>
 
-<h1>Les Evénements de votre ville ! ✅</h1>
+<h1>Les Evénements de votre ville !</h1>
 <div class="container">
     {% for event in event %}
 
@@ -14,7 +23,18 @@
             <div class="card-body">
                 <h5 class="card-title">{{ event.title }}</h5>
                 <p class="card-text">{{event.content | raw }}</p>
+                {% if not app.user %}
+
                 <a href="{{ path('eventShow', {'id': event.id}) }}" class="btn btn-primary">Lire la suite</a>
+
+                {% else %}
+
+                <a href="{{ path('eventShow', {'id': event.id}) }}" class="btn btn-primary">Lire la suite</a>
+                <a href="{{ path('editEvent', {'id': event.id}) }}" class="btn btn-warning">Modifier</a>
+                <a href="{{ path('deleteEvent', {'id': event.id}) }}" class="btn btn-danger">Supprimer</a>
+
+
+                {% endif %}
                 <hr>
                 <p class="card-text"><small class="text-muted">Ecris le {{ event.createdAt | date('d/m/Y') }} à
                         {{ event.createdAt | date('H:i') }} </small></p>

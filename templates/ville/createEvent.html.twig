@@ -1,6 +1,9 @@
 {% extends 'base.html.twig' %}
 {% form_theme formEvent 'bootstrap_4_layout.html.twig' %}
 {% block body %}
+
+{% if app.user %}
+
 <style>
     h1 {
         text-align: center;
@@ -33,5 +36,15 @@
     </button>
 
     {{ form_end(formEvent) }}
+
+    {% else %}
+    <div class="container">
+        <h1 style="text-align: center; margin-top:30px;">Vous ne pouvez pas acceder a cette page !</h1>
+        <div style="margin-left: 35%;margin-top:30px;" class="contain-button">
+            <a href="{{ path('connect') }}" class="btn btn-primary button-center">Me Connecter</a>
+            <a href="{{ path('home') }}" class="btn btn-primary button-center">Retour a l'accueil</a>
+        </div>
+    </div>
+    {% endif %}
 
     {% endblock %}

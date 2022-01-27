@@ -4,12 +4,21 @@ namespace App\Entity;
 
 use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
+ * @UniqueEntity(
+ * fields= {"email"},
+ * message= "L'email est deja utiliser"
+ * )
  */
-class User
+class User implements UserInterface
 {
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -19,6 +28,8 @@ class User
 
     /**
      * @ORM\Column(type="string", length=255)
+     
+     * @Assert\Email()
      */
     private $email;
 
@@ -29,9 +40,14 @@ class User
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Length(min="8", minMessage="votre message doit faire au moins 8 caractères")
      */
     private $password;
 
+
+    /**
+     *  @Assert\EqualTo(propertyPath="password", message="les deux mot de passe ne sont pas identique")
+     */
     public $confirm_password;
 
     public function getId(): ?int
@@ -73,5 +89,33 @@ class User
         $this->password = $password;
 
         return $this;
+    }
+
+    /**
+     * @see UserInterface
+     */
+    public function getRoles() :array
+    {
+        return ['ROLE_USER'];
+    }
+
+    /**
+     * Returning a salt is only needed, if you are not using a modern
+     * hashing algorithm (e.g. bcrypt or sodium) in your security.yaml.
+     *
+     * @see UserInterface
+     */
+    public function getSalt(): ?string
+    {
+        return null;
+    }
+
+    /**
+     * @see UserInterface
+     */
+    public function eraseCredentials()
+    {
+        // If you store any temporary, sensitive data on the user, clear it here
+        // $this->plainPassword = null;
     }
 }

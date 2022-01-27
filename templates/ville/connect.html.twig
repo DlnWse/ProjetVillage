@@ -1,13 +1,29 @@
-
 {% extends 'base.html.twig' %}
 
 {% block title %}Page connect{% endblock %}
 
 {% block body %}
 
+<style>
+    h1 {
+        text-align: center;
+        margin-top: 30px;
+    }
+</style>
+<div class="container">
+    <h1>Connexion</h1>
 
-<div class="example-wrapper">
-    <h1>Hello connect ! ✅</h1>
+    <form action="{{ path('connect') }}" method="post">
+        <div class="form-group">
+            <input placeholder="Email" required class="form-control" type="text" name="_username" id="">
+        </div>
+        <div class="form-group">
+            <input placeholder="MDP" required class="form-control" type="password" name="_password" id="">
+        </div>
+        <div class="form-group">
+            <button class="btn btn-primary" type="submit">Se Connecter</button>
+        </div>
 
+    </form>
 </div>
 {% endblock %}

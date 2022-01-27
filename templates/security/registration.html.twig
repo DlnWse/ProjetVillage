@@ -5,12 +5,17 @@
     <h1>Inscription</h1>
 
     {{ form_start(form) }}
-    {{ form_row(form.username, 'label' : 'Nom D\'utilisateur' { 
-        'attr' :{
+    {{ form_row(form.username, {'label' : 'Pseudo','attr' :{
             'placeholder' : 'Pseudo :'}}) }}
-    {{ form_row(form.email) }}
-    {{ form_row(form.password) }}
-    {{ form_row(form.confirm_password) }}
+
+    {{ form_row(form.email, {'label' : 'Email','attr' :{
+        'placeholder' : 'Email :'}})  }}
+
+    {{ form_row(form.password, {'label' : 'Mot de Passe','attr' :{
+        'placeholder' : 'MDP :'}})  }}
+
+    {{ form_row(form.confirm_password, {'label' : 'Confirmez votre MDP','attr' :{
+        'placeholder' : 'retapez votre MDP :'}})  }}
 
 
     <button type="submit" class="btn btn-primary">S'inscrire</button>
