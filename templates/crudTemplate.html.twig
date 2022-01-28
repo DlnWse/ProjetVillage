@@ -56,6 +56,7 @@
             font-size: 22px;
             text-align: center;
             margin-bottom: 15px;
+            margin-top: 50px;
         }
 
         .user-picture {
@@ -216,6 +217,24 @@
             transition: 0.3s;
             transform: scale(1.1);
         }
+        .disconnected{
+            margin-top: 60%;
+            height: 100px;
+            width: 100%;
+            background-color: rgb(179, 18, 18);
+            color: white;
+            border-radius: 0px 0px 30px 30px;
+            text-decoration: none;
+            font-size: 24px;
+            text-align: center;
+            padding-top: 30px;
+            transition: 0.3s;
+        }
+        .disconnected:hover{
+            transition: 0.3s;
+            background-color: rgb(129, 11, 11);
+            color: white;
+        }
     </style>
 
     {% if app.user %}
@@ -237,7 +256,7 @@
                 <h6>Affichage & Modification</h6>
                 <a href="{{ path('crudEvent') }}" class="menu">Afficher un Evénement</a>
                 <a href="{{ path('crudActu') }}" class="menu">Afficher une Actualité</a>
-                <hr>
+                <!-- <hr> -->
             </div>
 
             <div class="creation">
@@ -246,6 +265,8 @@
                 <a href="{{ path('createActu') }}" class="menu">Créer une Actualité</a>
                 <a href="{{ path('register') }}" class="menu">Ajouter un Utilisateur</a>
             </div>
+
+            <a href="{{path('logout')}}" class="disconnected">Déconnexion</a>
 
         </div>
 
