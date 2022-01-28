@@ -9,22 +9,22 @@
 {% block content %}
 <div class="flexbox">
     <div class="container-lg-card">
-        <a class="large-card" href="">
+        <a class="large-card" href="{{ path('crudEvent') }}">
             Afficher les Evénements
         </a>
-        <a class="large-card" href="">
+        <a class="large-card" href="{{ path('crudActu') }}">
             Afficher les Actualités
         </a>
     </div>
 
     <div class="container-sm-card">
-        <a class="small-card" href="">
+        <a class="small-card" href="{{ path('createEvent') }}">
             Créer un Evénement
         </a>
-        <a class="small-card" href="">
+        <a class="small-card" href="{{ path('createActu') }}">
             Créer une Actualité
         </a>
-        <a class="small-card" href="">
+        <a class="small-card" href="{{ path('register') }}">
             Ajouter un Utilisateur
         </a>
     </div>

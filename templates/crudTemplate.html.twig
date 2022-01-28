@@ -143,12 +143,12 @@
         }
 
         .large-card:nth-child(1) {
-            background-color: rgba(151, 235, 151, 0.76);
+            border: solid 2px rgba(151, 235, 151, 0.76);
             color: rgba(89, 226, 89, 0.76);
         }
 
         .large-card:nth-child(2) {
-            background-color: rgba(235, 220, 151, 0.76);
+            border: solid 2px rgba(235, 220, 151, 0.76);
             color: rgba(231, 199, 53, 0.76);
         }
 
@@ -172,17 +172,17 @@
         }
 
         .small-card:nth-child(1) {
-            background-color: rgba(157, 151, 235, 0.76);
+            border: solid 2px rgba(157, 151, 235, 0.76);
             color: rgb(139, 132, 235);
         }
 
         .small-card:nth-child(2) {
-            background-color: rgba(211, 151, 235, 0.76);
+            border: solid 2px rgba(211, 151, 235, 0.76);
             color: rgba(185, 92, 221, 0.76);
         }
 
         .small-card:nth-child(3) {
-            background-color: rgba(235, 164, 151, 0.76);
+            border: solid 2px rgba(235, 164, 151, 0.76);
             color: rgba(231, 118, 98, 0.76);
         }
 
@@ -208,7 +208,7 @@
         a.small-card {
             font-size: 24px;
             transition: 0.3s;
-            
+
         }
 
         a.small-card:hover {
@@ -227,10 +227,13 @@
             <div class="user">
                 <img src="http://village.dylanweisse.com/user.png" class="user-picture">
                 <h5>Bienvenue Dylan</h5>
+                <a href="{{ path('dashboard') }}" class="menu">Accueil Dashboard</a>
                 <hr>
+
             </div>
 
             <div class="creation">
+
                 <h6>Affichage & Modification</h6>
                 <a href="{{ path('crudEvent') }}" class="menu">Afficher un Evénement</a>
                 <a href="{{ path('crudActu') }}" class="menu">Afficher une Actualité</a>
