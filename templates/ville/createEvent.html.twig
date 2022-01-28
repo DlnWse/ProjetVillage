@@ -1,50 +1,56 @@
-{% extends 'base.html.twig' %}
+{% extends "crudTemplate.html.twig" %}
 {% form_theme formEvent 'bootstrap_4_layout.html.twig' %}
 {% block body %}
-
+{% block content %}
 {% if app.user %}
 
-<style>
-    h1 {
-        text-align: center;
-        margin-top: 30px;
-    }
-</style>
-<h1> {% if editMode %}
-    Modification d'un event
-    {% else %}
-    Création d'un event
-    {% endif %}</h1>
-
-{{ form_start(formEvent) }}
-<div class="container">
-
-    {{ form_row(formEvent.title, {'attr': {'placeholder' : "Titre de l'event"}}) }}
-
-    {{ form_row(formEvent.content , {'attr': {'placeholder' : "Contenu de l'event"}}) }}
-
-    {{ form_row(formEvent.image , {'attr': {'placeholder' : "URL de l'image"}}) }}
-
-
-    <button type="submit" class="btn btn-primary">
-
-        {% if editMode %}
-        Enregistrer les modifs.
-        {% else %}
-        Ajouter l'event
-        {% endif %}
-    </button>
-
-    {{ form_end(formEvent) }}
-
-    {% else %}
+<div class="contentCrea">
     <div class="container">
-        <h1 style="text-align: center; margin-top:30px;">Vous ne pouvez pas acceder a cette page !</h1>
-        <div style="margin-left: 35%;margin-top:30px;" class="contain-button">
-            <a href="{{ path('connect') }}" class="btn btn-primary button-center">Me Connecter</a>
-            <a href="{{ path('home') }}" class="btn btn-primary button-center">Retour a l'accueil</a>
-        </div>
-    </div>
-    {% endif %}
+        <h2> {% if editMode %}
+            Modification d'un event
+            {% else %}
+            Création d'un event
+            {% endif %}
+        </h2>
 
-    {% endblock %}
+        {{ form_start(formEvent) }}
+
+
+        {{ form_row(formEvent.title, {'attr': {'placeholder' : "Titre de l'event"  
+                                                 }}) }}
+
+        {{ form_row(formEvent.content , {'attr': {'placeholder' : "Contenu de l'event",
+                                                  'class' : 'form-area'   
+                                                }}) }}
+
+        {{ form_row(formEvent.image , {'attr': {'placeholder' : "URL de l'image"
+                                                }}) }}
+
+
+        <button type="submit" class="btn btn-primary button-envoi">
+
+            {% if editMode %}
+            Enregistrer les modifs.
+            {% else %}
+            Ajouter l'event
+            {% endif %}
+
+        </button>
+
+        {{ form_end(formEvent) }}
+    </div>
+
+</div>
+{% else %}
+
+
+<div class="container">
+    <h1 style="text-align: center; margin-top:30px;">Vous ne pouvez pas acceder a cette page !</h1>
+    <div style="margin-left: 35%;margin-top:30px;" class="contain-button">
+        <a href="{{ path('connect') }}" class="btn btn-primary button-center">Me Connecter</a>
+        <a href="{{ path('home') }}" class="btn btn-primary button-center">Retour a l'accueil</a>
+    </div>
+</div>
+{% endif %}
+{% endblock  %}
+{% endblock %}

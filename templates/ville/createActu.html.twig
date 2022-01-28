@@ -1,50 +1,56 @@
-{% extends 'base.html.twig' %}
+{% extends "crudTemplate.html.twig" %}
 {% form_theme formActu 'bootstrap_4_layout.html.twig' %}
 {% block body %}
-
+{% block content %}
 {% if app.user %}
 
-<style>
-    h1 {
-        text-align: center !important;
-        margin-top: 30px;
-    }
-</style>
-<h1> {% if editMode %}
-    Modification d'une actu
-    {% else %}
-    Création d'une actu
-    {% endif %}</h1>
-
-{{ form_start(formActu) }}
-<div class="container">
-
-    {{ form_row(formActu.title, {'attr': {'placeholder' : "Titre de l'actu"}}) }}
-
-    {{ form_row(formActu.content , {'attr': {'placeholder' : "Contenu de l'actu"}}) }}
-
-    {{ form_row(formActu.image , {'attr': {'placeholder' : "URL de l'image"}}) }}
-
-
-    <button type="submit" class="btn btn-primary">
-
-        {% if editMode %}
-        Enregistrer les modifs.
-        {% else %}
-        Ajouter l'actu
-        {% endif %}
-    </button>
-
-    {{ form_end(formActu) }}
-
-    {% else %}
+<div class="contentCrea">
     <div class="container">
-        <h1 style="text-align: center; margin-top:30px;">Vous ne pouvez pas acceder a cette page !</h1>
-        <div style="margin-left: 35%;margin-top:30px;" class="contain-button">
-            <a href="{{ path('connect') }}" class="btn btn-primary button-center">Me Connecter</a>
-            <a href="{{ path('home') }}" class="btn btn-primary button-center">Retour a l'accueil</a>
-        </div>
-    </div>
-    {% endif %}
+        <h2> {% if editMode %}
+            Modification d'une actu
+            {% else %}
+            Création d'une actu
+            {% endif %}
+        </h2>
 
-    {% endblock %}
+        {{ form_start(formActu) }}
+
+
+        {{ form_row(formActu.title, {'attr': {'placeholder' : "Titre de l'actu"   
+                                                 }}) }}
+
+        {{ form_row(formActu.content , {'attr': {'placeholder' : "Contenu de l'actu",
+                                                  'class' : 'form-area'   
+                                                }}) }}
+
+        {{ form_row(formActu.image , {'attr': {'placeholder' : "URL de l'actu"  
+                                                }}) }}
+
+
+        <button type="submit" class="btn btn-primary button-envoi">
+
+            {% if editMode %}
+            Enregistrer les modifs.
+            {% else %}
+            Ajouter l'event
+            {% endif %}
+
+        </button>
+
+        {{ form_end(formActu) }}
+    </div>
+
+</div>
+{% else %}
+
+
+<div class="container">
+    <h1 style="text-align: center; margin-top:30px;">Vous ne pouvez pas acceder a cette page !</h1>
+    <div style="margin-left: 35%;margin-top:30px;" class="contain-button">
+        <a href="{{ path('connect') }}" class="btn btn-primary button-center">Me Connecter</a>
+        <a href="{{ path('home') }}" class="btn btn-primary button-center">Retour a l'accueil</a>
+    </div>
+</div>
+{% endif %}
+{% endblock  %}
+{% endblock %}

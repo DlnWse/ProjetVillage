@@ -1,0 +1,274 @@
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
+</script>
+
+
+<body>
+
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap');
+
+        body {
+            background-color: rgb(236, 236, 236);
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .d-flex {
+            height: 95%;
+            margin-top: 1%;
+        }
+
+        .bloc {
+            border-radius: 30px;
+            background-color: white;
+            box-shadow: rgba(128, 128, 128, 0.404) 2px 0px 10px 0px;
+        }
+
+        .bloc-nav {
+            margin-left: 40px;
+            flex-direction: column;
+        }
+
+        .bloc-content {
+            margin-left: 50px;
+        }
+
+        .user {
+            /*height: 300px;*/
+            width: 100%;
+            text-align: center;
+            padding-top: 10px;
+        }
+
+        h2 {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        h5 {
+            font-size: 24px;
+        }
+
+        h6 {
+            font-size: 22px;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .user-picture {
+            height: 50px;
+            width: 50px;
+            border-radius: 50%;
+            margin-bottom: 5px;
+        }
+
+        .creation {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .menu {
+            text-align: center;
+            font-size: 20px;
+            line-height: 200%;
+            text-decoration: none;
+            color: rgb(0, 68, 255);
+            width: 90%;
+            border-radius: 50px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            transition: 0.3s;
+        }
+
+        .menu:hover {
+            transition: 0.3s;
+            background-color: rgb(0, 68, 255);
+            color: white;
+        }
+
+        .active {
+            background-color: rgb(0, 68, 255);
+            color: white;
+        }
+
+        .contentCrea {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            height: 100%;
+        }
+
+        .button-envoi {
+            margin-top: 30px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .form-input {
+            margin-bottom: 20px;
+        }
+
+        .form-area {
+            height: 90%;
+        }
+
+        .flexbox {
+            height: 100%;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .container-lg-card {
+            display: flex;
+            flex-direction: row;
+            height: 45%;
+            width: 100%;
+            margin-top: 2.5%;
+        }
+
+        .large-card {
+            width: 40%;
+            height: 100%;
+            box-shadow: rgba(128, 128, 128, 0.404) 2px 0px 10px 0px;
+            margin-left: 5%;
+            margin-right: 5%;
+            border-radius: 30px;
+
+        }
+
+        .large-card:nth-child(1) {
+            background-color: rgba(151, 235, 151, 0.76);
+            color: rgba(89, 226, 89, 0.76);
+        }
+
+        .large-card:nth-child(2) {
+            background-color: rgba(235, 220, 151, 0.76);
+            color: rgba(231, 199, 53, 0.76);
+        }
+
+        .container-sm-card {
+            display: flex;
+            flex-direction: row;
+            height: 40%;
+            width: 100%;
+            margin-top: 2.5%;
+            margin-bottom: 2.5%;
+        }
+
+        .small-card {
+            width: 30%;
+            height: 100%;
+            box-shadow: rgba(128, 128, 128, 0.404) 2px 0px 10px 0px;
+            margin-left: 5%;
+            margin-right: 5%;
+            border-radius: 30px;
+
+        }
+
+        .small-card:nth-child(1) {
+            background-color: rgba(157, 151, 235, 0.76);
+            color: rgb(139, 132, 235);
+        }
+
+        .small-card:nth-child(2) {
+            background-color: rgba(211, 151, 235, 0.76);
+            color: rgba(185, 92, 221, 0.76);
+        }
+
+        .small-card:nth-child(3) {
+            background-color: rgba(235, 164, 151, 0.76);
+            color: rgba(231, 118, 98, 0.76);
+        }
+
+        a.large-card,
+        a.small-card {
+            text-decoration: none;
+            color: white;
+            text-align: center;
+            padding-top: 11%;
+        }
+
+        a.large-card {
+            font-size: 30px;
+            transition: 0.3s;
+        }
+
+        a.large-card:hover {
+            font-size: 34px;
+            transition: 0.3s;
+            transform: scale(1.1);
+        }
+
+        a.small-card {
+            font-size: 24px;
+            transition: 0.3s;
+            
+        }
+
+        a.small-card:hover {
+            font-size: 28px;
+            transition: 0.3s;
+            transform: scale(1.1);
+        }
+    </style>
+
+    {% if app.user %}
+
+    <div class="d-flex flex-row">
+
+        <div class="d-flex col-md-2 bloc bloc-nav">
+
+            <div class="user">
+                <img src="http://village.dylanweisse.com/user.png" class="user-picture">
+                <h5>Bienvenue Dylan</h5>
+                <hr>
+            </div>
+
+            <div class="creation">
+                <h6>Affichage & Modification</h6>
+                <a href="{{ path('crudEvent') }}" class="menu">Afficher un Evénement</a>
+                <a href="{{ path('crudActu') }}" class="menu">Afficher une Actualité</a>
+                <hr>
+            </div>
+
+            <div class="creation">
+                <h6>Création</h6>
+                <a href="{{ path('createEvent') }}" class="menu">Créer un Evénement</a>
+                <a href="{{ path('createActu') }}" class="menu">Créer une Actualité</a>
+                <a href="{{ path('register') }}" class="menu">Ajouter un Utilisateur</a>
+            </div>
+
+        </div>
+
+
+        <div class="d-flex col-md-9 bloc bloc-content">
+
+
+            {% block content %}
+
+            {% endblock %}
+
+        </div>
+
+
+        {% else %}
+
+
+        <div class="container">
+            <h1 style="text-align: center; margin-top:30px;">Vous ne pouvez pas acceder a cette page !</h1>
+            <div style="margin-left: 35%;margin-top:30px;" class="contain-button">
+                <a href="{{ path('connect') }}" class="btn btn-primary button-center">Me Connecter</a>
+                <a href="{{ path('home') }}" class="btn btn-primary button-center">Retour a l'accueil</a>
+            </div>
+        </div>
+        {% endif %}
+
+
+    </div>
+</body>

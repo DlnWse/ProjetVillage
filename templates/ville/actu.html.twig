@@ -8,6 +8,7 @@
         text-align: center;
         margin-top: 30px;
     }
+
     body {
         background-color: rgba(186, 197, 228, 0.349);
     }
@@ -23,19 +24,7 @@
             <div class="card-body">
                 <h5 class="card-title">{{ actu.title }}</h5>
                 <p class="card-text">{{actu.content | raw }}</p>
-
-                {% if not app.user %}
-
                 <a href="{{ path('actuShow', {'id': actu.id}) }}" class="btn btn-primary">Lire la suite</a>
-
-                {% else %}
-
-                <a href="{{ path('actuShow', {'id': actu.id}) }}" class="btn btn-primary">Lire la suite</a>
-                <a href="{{ path('editActu', {'id': actu.id}) }}" class="btn btn-warning">Modifier</a>
-                <a href="{{ path('deleteActu', {'id': actu.id}) }}" class="btn btn-danger">Supprimer</a>
-
-
-                {% endif %}
                 <hr>
                 <p class="card-text"><small class="text-muted">Ecris le {{ actu.createdAt | date('d/m/Y') }} à
                         {{ actu.createdAt | date('H:i') }} </small></p>

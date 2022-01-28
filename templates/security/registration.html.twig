@@ -1,25 +1,37 @@
-{% extends "base.html.twig" %}
+{% extends "crudTemplate.html.twig" %}
 
 {% block body %}
+{% block content %}
+
+
 <div class="container">
-    <h1>Inscription</h1>
+    <h2>Inscription</h2>
 
     {{ form_start(form) }}
     {{ form_row(form.username, {'label' : 'Pseudo','attr' :{
-            'placeholder' : 'Pseudo :'}}) }}
+            'placeholder' : 'Pseudo :',
+            'class' : 'form-input'
+        }}) }}
 
     {{ form_row(form.email, {'label' : 'Email','attr' :{
-        'placeholder' : 'Email :'}})  }}
+        'placeholder' : 'Email :',
+        'class' : 'form-input'
+    }}) }}
 
     {{ form_row(form.password, {'label' : 'Mot de Passe','attr' :{
-        'placeholder' : 'MDP :'}})  }}
+        'placeholder' : 'MDP :',
+        'class' : 'form-input'
+    }}) }}
 
     {{ form_row(form.confirm_password, {'label' : 'Confirmez votre MDP','attr' :{
-        'placeholder' : 'retapez votre MDP :'}})  }}
+        'placeholder' : 'retapez votre MDP :',
+        'class' : 'form-input'
+    }}) }}
 
 
-    <button type="submit" class="btn btn-primary">S'inscrire</button>
+    <button type="submit" class="btn btn-primary button-envoi">S'inscrire</button>
 
     {{ form_end(form) }}
 </div>
 {% endblock %}
+{% endblock  %}
